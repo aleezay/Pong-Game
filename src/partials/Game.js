@@ -2,8 +2,10 @@ import {
 	SVG_NS,
 	KEYS
 } from '../settings'; //always have imports at the top
+
 import Board from './Board';
 import Paddle from './Paddle';
+import Ball from './Ball';
 
 export default class Game {
 
@@ -12,7 +14,7 @@ export default class Game {
 		this.height = height;
 		this.gameElement = document.getElementById(element); //dont have to call it by 'game' because this make is a bit more flexible 
 
-//export these 3 as const in settings. then import
+		//export these 3 as const in settings. then import
 		this.paddleWidth = 8;
 		this.paddleHeight = 56;
 		this.boardGap = 10;
@@ -41,10 +43,23 @@ export default class Game {
 
 		);
 
+		this.ball = new Ball(8, this.width, this.height, ); // change 8 to this.ballSize
 
+		document.addEventListener('keydown', event => {
+			switch (event.key) {
+				case KEYS.spaceBar:
+					this.pause = !this.pause;
+					break;
+			}
+		});
 	}
 
 	render() { //do it this way so we can animate it.
+
+
+		if (this.pause) {
+			return;
+		}
 
 		this.gameElement.innerHTML = '';
 
@@ -57,6 +72,7 @@ export default class Game {
 		this.board.render(svg); //appending board. has to be called svg bc thats what we called our variable with let.
 		this.player1.render(svg);
 		this.player2.render(svg);
+		this.ball.render(svg, this.player1, this.player2);
+		this.ball.render(svg, this.player1, this.player2);
 	}
-
 }
