@@ -4,12 +4,15 @@ import {
 
 export default class Ball {
 
-  constructor(radius, boardWidth, boardHeight) {
+  constructor(radius, boardWidth, boardHeight, player1, player2) {
     this.radius = radius;
     // this.ballSize = 8;
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
+    this.player1 = player1;
+    this.player2 = player2;
+    this.ping = new Audio('public/sounds/pong-01.wav');
     this.reset();
   }
 
@@ -30,15 +33,26 @@ export default class Ball {
   }
 
   //values of these constants are true or false so if else.
-  wallCollision() {
+  //console.log(player1.score);
+  wallCollision(player1, player2) {
     const hitLeft = this.x - this.radius <= 0;
     const hitRight = this.x + this.radius >= this.boardWidth;
     const hitTop = this.y - this.radius <= 0;
     const hitBottom = this.y + this.radius >= this.boardHeight;
 
-    if (hitLeft || hitRight) {
-      //solution 1: this.vx = this.vx - this.vx * 2
-      this.vx = -this.vx;
+    if (hitLeft) {
+      this.goal(player2)
+      this.vx = -this.vx
+     this.player1.height -= 5;
+    //  this.paddleHeight1 = this.paddleHeight1 -5; same as above like class example
+  } else if (hitRight) {
+      this.goal(player1)
+      console.log(player1.score, player2.score)
+      // this.vx = -this.vx
+      this.player2.height -=5;
+
+      //add function to ++ height everytime player scores
+
     } else if (hitTop || hitBottom) {
       this.vy = -this.vy;
 
@@ -66,6 +80,7 @@ export default class Ball {
         this.y <= bottomY
       ) {
         this.vx = -this.vx
+        this.ping.play();
       }
 
     } else {
@@ -75,16 +90,17 @@ export default class Ball {
 
       if (
         //left edge of ball x-r <= right edge of paddle 
-        this.x - this.radius <= rightX 
-        && this.y >= topY 
-        && this.y <= bottomY
+        this.x - this.radius <= rightX &&
+        this.y >= topY &&
+        this.y <= bottomY
       ) {
         this.vx = -this.vx
+        this.ping.play();
       }
     }
   }
 
-  goal (player) {
+  goal(player) {
     //increment winning player score
     player.score++;
     this.reset();
@@ -96,7 +112,8 @@ export default class Ball {
     this.x += this.vx;
     this.y += this.vy; //these two lines can be refigured later
 
-    this.wallCollision();
+    this.wallCollision(player1, player2);
+
     this.paddleCollision(player1, player2);
 
     //detect score
@@ -112,6 +129,3 @@ export default class Ball {
     svg.appendChild(circle);
   }
 }
-
-
-//Move this into paddle collision later

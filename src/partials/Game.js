@@ -6,6 +6,7 @@ import {
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
+import Score from './Score';
 
 export default class Game {
 
@@ -43,7 +44,10 @@ export default class Game {
 
 		);
 
-		this.ball = new Ball(8, this.width, this.height, ); // change 8 to this.ballSize
+		this.ball = new Ball(8, this.width, this.height, this.player1, this.player2 ); // change 8 to this.ballSize pass in this.player 1&2
+
+		this.score1 = new Score(this.width / 2 - 80, 30, 30);
+		this.score2 = new Score(this.width / 2 + 30, 30, 30);
 
 		document.addEventListener('keydown', event => {
 			switch (event.key) {
@@ -73,6 +77,7 @@ export default class Game {
 		this.player1.render(svg);
 		this.player2.render(svg);
 		this.ball.render(svg, this.player1, this.player2);
-		this.ball.render(svg, this.player1, this.player2);
+		this.score1.render(svg, this.player1.score);
+		this.score2.render(svg, this.player2.score);
 	}
 }
