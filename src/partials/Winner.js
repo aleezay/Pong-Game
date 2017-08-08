@@ -4,14 +4,16 @@
 
 // export default class Winner {
 
-//    constructor(width, height) {
+//    constructor(width, height, score) {
 //     this.width = width;
 //     this.height = height;
+//     this.score = score;
 //   }
-// render(svg, winner) { //parameter. can be any reference stand in inside of our function to what will eventually be a dom node. atm it has no idea - waiting for us to pass a reference into it. could call it anything
+// render(svg, winner) {
 
-//   render(svg, score) {
-//     const textWinner = document.createElementNS(SVG_NS, 'text');
+// 		this.gameElement.innerHTML = '';
+
+//     let textWinner = document.createElementNS(SVG_NS, 'text');
 //     textWinner.setAttributeNS(null, 'x', this.x);
 //     textWinner.setAttributeNS(null, 'y', this.y);
 //     textWinner.setAttributeNS(null, 'fill', 'plum');
@@ -20,5 +22,4 @@
 //     textWinner.textContent = winner;
 //     svg.appendChild(textWinner);
 //   }
-// }
 // }

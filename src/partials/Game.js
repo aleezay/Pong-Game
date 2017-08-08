@@ -60,8 +60,8 @@ export default class Game {
 					this.pause = !this.pause;
 					break;
 
-				// case KEYS.r:
-				// 	this.reset();
+				case KEYS.r:
+					location.reload();
 			}
 		});
 
@@ -101,10 +101,12 @@ export default class Game {
 		// this.winner.render(svg, winner);
 
 		if (this.player1.height === 0) {
-			this.declareWinner(svg, 'Player 2')
+			this.declareWinner(svg)
+			window.alert('Player 2 Wins!')
 
 		} else if (this.player2.height === 0) {
-			this.declareWinner(svg, 'Player 1')
+			this.declareWinner(svg)
+			window.alert('Player 1 Wins!')
 		}
 	}
 }

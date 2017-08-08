@@ -126,10 +126,12 @@ export default class Ball {
     svg.appendChild(circle);
 
     // let circle2 = document.createElementNS(SVG_NS, 'circle');
-    // circle2.setAttributeNS(null, 'r', 2);
+    // circle2.setAttributeNS(null, 'r', 8);
     // circle2.setAttributeNS(null, 'cx', this.x);
     // circle.setAttributeNS(null, 'cy', this.y);
     // circle2.setAttributeNS(null, 'fill', 'yellow');
-    // svg.appendChild(circle2);
+
+     svg.appendChild(circle);
+    
   }
 }
