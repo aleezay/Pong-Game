@@ -102,7 +102,6 @@ export default class Ball {
     //increment winning player score
     player.score++;
     this.reset();
-
   }
 
   render(svg, player1, player2) {
@@ -131,7 +130,7 @@ export default class Ball {
     // circle.setAttributeNS(null, 'cy', this.y);
     // circle2.setAttributeNS(null, 'fill', 'yellow');
 
-     svg.appendChild(circle);
-    
+    svg.appendChild(circle);
+
   }
 }

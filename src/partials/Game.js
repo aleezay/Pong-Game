@@ -47,7 +47,7 @@ export default class Game {
 
 		this.ball = new Ball(8, this.width, this.height, this.player1, this.player2); // change 8 to this.ballSize pass in this.player 1&2
 		// this.circle2 = new Ball (2, this.width, this.height, this.player1, this.player2);
-		
+
 		this.score1 = new Score(this.width / 2 - 80, 40, 30);
 		this.score2 = new Score(this.width / 2 + 60, 40, 30);
 
@@ -75,8 +75,8 @@ export default class Game {
 	// if(this.player1.score > 2 || this.player2.score > 2) {
 	// 	this.circle2.render(svg, this.player1, this.player2);
 	// }
-	
-	
+
+
 	render() { //do it this way so we can animate it.
 
 		if (this.pause) {

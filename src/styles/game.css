@@ -177,6 +177,7 @@ h1 {
 .players {
     display: flex;
     flex-direction: row;
+    display: inline;
     justify-content: space-between;
     color: #c18cd8;
     padding: 1.2rem;
