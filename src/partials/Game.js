@@ -7,6 +7,7 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
+// import Winner from './Winner';
 
 export default class Game {
 
@@ -44,22 +45,39 @@ export default class Game {
 
 		);
 
-		this.ball = new Ball(8, this.width, this.height, this.player1, this.player2 ); // change 8 to this.ballSize pass in this.player 1&2
+		this.ball = new Ball(8, this.width, this.height, this.player1, this.player2); // change 8 to this.ballSize pass in this.player 1&2
+		// this.circle2 = new Ball (2, this.width, this.height, this.player1, this.player2);
+		
+		this.score1 = new Score(this.width / 2 - 80, 40, 30);
+		this.score2 = new Score(this.width / 2 + 60, 40, 30);
 
-		this.score1 = new Score(this.width / 2 - 80, 30, 30);
-		this.score2 = new Score(this.width / 2 + 30, 30, 30);
+
+		// this.winner = new Winner(this.width, this.height, this.score);
 
 		document.addEventListener('keydown', event => {
 			switch (event.key) {
 				case KEYS.spaceBar:
 					this.pause = !this.pause;
 					break;
+
+				// case KEYS.r:
+				// 	this.reset();
 			}
 		});
+
+	}
+	declareWinner(svg, player) {
+		// this.winner.render(svg);
+		this.pause = true;
 	}
 
+	// circle2(svg) {
+	// if(this.player1.score > 2 || this.player2.score > 2) {
+	// 	this.circle2.render(svg, this.player1, this.player2);
+	// }
+	
+	
 	render() { //do it this way so we can animate it.
-
 
 		if (this.pause) {
 			return;
@@ -77,7 +95,16 @@ export default class Game {
 		this.player1.render(svg);
 		this.player2.render(svg);
 		this.ball.render(svg, this.player1, this.player2);
+		// this.circle2.render(svg, this.player1, this.player2);
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
+		// this.winner.render(svg, winner);
+
+		if (this.player1.height === 0) {
+			this.declareWinner(svg, 'Player 2')
+
+		} else if (this.player2.height === 0) {
+			this.declareWinner(svg, 'Player 1')
+		}
 	}
 }

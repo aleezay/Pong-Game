@@ -10,10 +10,9 @@ export default class Paddle {
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 10; //number of pixels it moves per up call or down call
+    this.speed = 12; //number of pixels it moves per up call or down call
     this.score = 0;
-    // this.fill = #40E0D0;
-
+   
     document.addEventListener('keydown', event => {
       switch (event.key) {
 
@@ -56,10 +55,11 @@ export default class Paddle {
     rect.setAttributeNS(null, 'y', this.y);
     rect.setAttributeNS(null, 'speed', this.speed);
     rect.setAttributeNS(null, 'fill', '#40E0D0');
+    rect.setAttributeNS(null, 'stroke', '#21ccbb');
+    rect.setAttributeNS(null, 'stroke-width', '1');
     svg.appendChild(rect);
 
   }
-
 }
 
 //always start in the middle bc we want it to render with the board rather than an arbitrary pixel size

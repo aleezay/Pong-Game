@@ -6,7 +6,6 @@ export default class Ball {
 
   constructor(radius, boardWidth, boardHeight, player1, player2) {
     this.radius = radius;
-    // this.ballSize = 8;
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
     this.direction = 1;
@@ -43,19 +42,18 @@ export default class Ball {
     if (hitLeft) {
       this.goal(player2)
       this.vx = -this.vx
-     this.player1.height -= 5;
-    //  this.paddleHeight1 = this.paddleHeight1 -5; same as above like class example
-  } else if (hitRight) {
-      this.goal(player1)
-      console.log(player1.score, player2.score)
-      // this.vx = -this.vx
-      this.player2.height -=5;
+      this.player2.height += 8;
+      this.player1.height -= 8;
+      //  this.paddleHeight1 = this.paddleHeight1 -5; would be the same as above
 
-      //add function to ++ height everytime player scores
+    } else if (hitRight) {
+      this.goal(player1)
+      // console.log(player1.score, player2.score)
+      this.player1.height += 8;
+      this.player2.height -= 8;
 
     } else if (hitTop || hitBottom) {
       this.vy = -this.vy;
-
     }
   }
   paddleCollision(player1, player2) {
@@ -110,10 +108,9 @@ export default class Ball {
   render(svg, player1, player2) {
 
     this.x += this.vx;
-    this.y += this.vy; //these two lines can be refigured later
+    this.y += this.vy; //refigure these two lines
 
     this.wallCollision(player1, player2);
-
     this.paddleCollision(player1, player2);
 
     //detect score
@@ -125,7 +122,14 @@ export default class Ball {
     circle.setAttributeNS(null, 'r', 8);
     circle.setAttributeNS(null, 'cx', this.x);
     circle.setAttributeNS(null, 'cy', this.y);
-    circle.setAttributeNS(null, 'fill', '#FF5300');
+    circle.setAttributeNS(null, 'fill', '#ff6f00');
     svg.appendChild(circle);
+
+    // let circle2 = document.createElementNS(SVG_NS, 'circle');
+    // circle2.setAttributeNS(null, 'r', 2);
+    // circle2.setAttributeNS(null, 'cx', this.x);
+    // circle.setAttributeNS(null, 'cy', this.y);
+    // circle2.setAttributeNS(null, 'fill', 'yellow');
+    // svg.appendChild(circle2);
   }
 }

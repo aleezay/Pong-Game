@@ -6,4 +6,5 @@ export const KEYS = {
   up: 'ArrowUp',       // player 2
   down: 'ArrowDown',     
   spaceBar: ' ',
+  r: 'r',
 }
