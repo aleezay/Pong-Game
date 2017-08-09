@@ -9,7 +9,7 @@ export default class Board {
     this.height = height;
   }
 
-  render(svg) { //parameter. can be any reference stand in inside of our function to what will eventually be a dom node. atm it has no idea - waiting for us to pass a reference into it. could call it anything
+  render(svg) {
 
     let rect = document.createElementNS(SVG_NS, 'rect');
     rect.setAttributeNS(null, 'width', this.width);
